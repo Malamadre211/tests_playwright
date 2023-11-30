@@ -1,25 +1,21 @@
 import { test, expect } from '@playwright/test';
 
 
-test('Count = 0', async ({ page }) => {
+test('test', async ({ page }) => {
+  await page.goto('http://localhost:5173/');
+  const countButton = await page.getByRole('button', { name: 'count is' });
 
-  await page.goto('http://localhost:5173/')
+const countValue = await countButton.innerText();
 
-  const countValue = await page.innerText('.card button')
-
-expect(countValue).toContain('0')
+expect(countValue).toBe('count is 0');
 
 });
 
-test("click work", async ({ page }) => {
-  
-  await page.goto('http://localhost:5173/')
+test("test 2", async ({ page }) => {
+  await page.goto('http://localhost:5173/');
+  const countButton = await page.getByRole('button', { name: 'count is' });
 
+  const countValue = await countButton.innerText();
 
-  await page.click('.card button')
-  await page.click('.card button')
-
-  const countValue = await page.innerText('.card button')
-
-  expect(countValue).toContain('2')
-});
+  expect(countValue).toBe('count is 2')
+})
